@@ -21,10 +21,10 @@ const routes: Routes = [
     path: 'game',
     component: GameComponent,
   },
-  {
-    path: 'finished',
-    component: FinishedGamesComponent,
-  },
+  // {
+  //   path: 'finished',
+  //   component: FinishedGamesComponent,
+  // },
   { path: '**', redirectTo: 'setup', pathMatch: 'full' },
 ];
 

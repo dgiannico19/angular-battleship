@@ -1,27 +1,29 @@
-# AngBtship
+# Angular Battleship
+
+This is a single player version of the traditional battleship game
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
 
-## Development server
+To clone the project, you must execute the following line in the console:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+git clone https://github.com/dgiannico19/angular-battleship.git
 
-## Code scaffolding
+On the containing folder of the project:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npm install` to install project dependencies
 
-## Build
+Run `ng serve -o` for a dev server. This will automatically take you `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+The game consists of 3 routes, /setup, /game, /rules
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+In the setup component, you can choose the level of difficulty(Hard - 50 moves, Medium - 100 moves, Easy - There is no movement limit), see the rules of the game and start playing.
 
-## Running end-to-end tests
+In the rules component, you will see detailed the rules of the game.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+In the game, you see a 10 x 10 board, in which the untouched squares are represented with anchor icons, the squares where there is a ship with a ship icon and the squares where there is water with the icon of a sea wave.
 
-## Further help
+At any moment of the game you can pause and you will see a menu with two buttons, "continue" and "quit".
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+If you win or lose you will see a screen according to each case.
+

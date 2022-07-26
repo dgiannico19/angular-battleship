@@ -10,6 +10,7 @@ import { Game } from './game';
   styleUrls: ['./game.component.sass'],
 })
 export class GameComponent implements OnInit {
+  //variables del juego
   close = faPause;
   pause: boolean = false;
   difficult: string = this.gameServices.currentDifficut;
@@ -17,9 +18,7 @@ export class GameComponent implements OnInit {
     this.difficult === 'Easy' ? 500 : this.difficult === 'Medium' ? 100 : 50;
 
   partidasFinalizadas: any = localStorage.getItem('games');
-
   partidasPerdidas: any = [];
-
   partidasGanadas: any = [];
 
   constructor(
@@ -29,6 +28,7 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  //disparo el ataque, localizo el casillero, paso validaciones segun movimiento y ejecuto segun cada caso
   onAttack(e: any) {
     let id = e.target.id,
       gameId = id.substring(1, 2),
@@ -61,6 +61,7 @@ export class GameComponent implements OnInit {
     tile.value = 'X';
   }
 
+  //ejecutar sonidos de la carpeta assets
   aplicarSonido(audioString: string): void {
     const audio = new Audio();
 
@@ -69,30 +70,35 @@ export class GameComponent implements OnInit {
     audio.play();
   }
 
+  //iniciar un nuevo juego
   initGame() {
     this.quitGame();
     this.gameServices.startGame();
   }
 
+  //pausar el juego
   pauseGame() {
     return (this.pause = true);
   }
 
+  //salir de pausa
   playGame() {
     return (this.pause = false);
   }
 
+  //salir del juego
   quitGame() {
-    console.log(this.gameServices.games )
     this.gameServices.games = [];
     this.pause = false;
     return;
   }
 
+  //traigo el juego actual
   get games(): Game[] {
     return this.gameServices.getGame();
   }
 
+  //traigo un ganador en base a la cantidad de barcos descubierta
   get winner() {
     const winner = this.gameServices.games[0].tiles.map((tile) =>
       tile.filter((data: any) => data.value === 1)
@@ -110,12 +116,11 @@ export class GameComponent implements OnInit {
 
     if (!game.length) {
       this.partidasGanadas.push(wonGame);
-      // localStorage.setItem();
-      console.log(this.partidasGanadas);
     }
     return !game.length ? this.gameServices.games[0] : null;
   }
 
+  //taigo un perdedor en base a los movimientos y los barcos que aun no fueron descubiertos
   get loser() {
     const winner = this.gameServices.games[0].tiles.map((tile) =>
       tile.filter((data: any) => data.value === 1)
@@ -134,15 +139,8 @@ export class GameComponent implements OnInit {
 
     if (game.length && this.movements === 0) {
       this.partidasPerdidas.push(losedGame);
-
-      console.log(this.partidasPerdidas);
     }
-    //   localStorage.setItem(
-    //     'games',
-    //     JSON.stringify({
-    //       ...this.partidasFinalizadas?.loseGames.push(losedGame),
-    //     })
-    //   );
+
     return game.length && this.movements === 0
       ? this.gameServices.games[0]
       : null;

@@ -31,6 +31,7 @@ export class GameService {
     return this.games;
   }
 
+  //crea tablero con el objeto q representa los casilleros y el jugador, distribuye 10 barcos simples entre los casilleros y agrega el juego al arreglo 
   initGame(): GameService {
     let tiles: Tiles[][] = [];
 
@@ -42,7 +43,7 @@ export class GameService {
       }
     }
 
-    // console.log(this.games)
+  
     //distribuir barcos individuales
     for (let i = 0; i < 10 * 2; i++) {
       tiles = this.randomShips(tiles, 10);
@@ -59,6 +60,7 @@ export class GameService {
     return this;
   }
 
+  //crea id random en base a una medida numerica lo utilice en player y id del juego
   createIdRandom = (length: number) => {
     let result = '';
     const caracteres =
@@ -71,6 +73,7 @@ export class GameService {
     return result;
   };
 
+  // reparte los barcos de manera rndom por los casilleros del tablero
   randomShips(tiles: Tiles[][], len: number): Tiles[][] {
     len = len - 1;
     let ranRow = this.getNumber(0, len),

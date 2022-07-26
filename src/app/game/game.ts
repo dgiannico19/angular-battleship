@@ -4,18 +4,18 @@ export class Game {
     name: 'Player',
     movements: 0,
   };
-  dayInit: any = this.getDateFromTime(Date.now());
+  dayInit: any = this.getDateFromTime();
   hourInit: string = this.getTime(Date.now());
   estadoFinal: string = '';
 
   tiles: any[] = [];
-  difficult: string= "Medium"
+  difficult: string = 'Medium';
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
   }
 
-  getDateFromTime(time: any) {
+  getDateFromTime() {
     const day = new Date().getDate();
     const month = new Date().getMonth() + 1;
     const year = new Date().getFullYear();
