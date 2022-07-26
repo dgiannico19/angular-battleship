@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row dataRow p-5" *ngFor="let game of games; let i = index">
+    <div *ngIf="winner" class="finish">
+      <h2>YOU WON!</h2>
+      <p>You shot down all the ships</p>
+      <button
+        routerLink="/setup"
+        type="button"
+        class="btn"
+        (click)="initGame()"
+        class="retryBtn"
+      >
+        To setup
+      </button>
+    </div>
+    <div *ngIf="loser" class="finish">
+      <h2>GAME OVER</h2>
+      <p>You ran out of moves</p>
+      <button
+        routerLink="/setup"
+        type="button"
+        class="btn"
+        (click)="initGame()"
+        class="retryBtn"
+      >
+        Retry
+      </button>
+    </div>
+    <div *ngIf="!winner && !loser">
+      <div class="pausado" *ngIf="pause">
+        <button class="btn btn-success" (click)="playGame()">Continue</button>
+
+        <button
+          class="btn btn-success"
+          (click)="quitGame()"
+          routerLink="/setup"
+        >
+          Quit
+        </button>
+      </div>
+      <div class="d-flex justify-content-between">
+        <p *ngIf="!pause && difficult !== 'Easy'">MOVEMENTS: {{ movements }}</p>
+        <div *ngIf="!pause && difficult === 'Easy'"></div>
+        <button *ngIf="!pause" (click)="pauseGame()" class="btn pauseBtn">
+          <fa-icon [icon]="close"></fa-icon>
+        </button>
+      </div>
+      <!-- <div> -->
+      <table *ngIf="!pause" class="tabla">
+        <!-- [style.opacity]="i == player ? 0.5 : 1" -->
+        <tr *ngFor="let row of game.tiles; let j = index">
+          <td
+            *ngFor="let col of row; let k = index"
+            (click)="onAttack($event)"
+            class="battleship-tile"
+            id="t{{ i }}{{ j }}{{ k }}"
+          >
+            {{
+              col.state === "sunken"
+                ? "🚢"
+                : col.state === "water"
+                ? "🌊"
+                : "⚓"
+            }}
+          </td>
+        </tr>
+      </table>
+      <div class="loser" *ngIf="loser"><h1>LOSER</h1></div>
+      <!-- </div> -->
+    </div>
+  </div>
+</div>

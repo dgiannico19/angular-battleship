@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row dataRow">
+    <div class="mt-5 text-center">
+      <h1 class="titulo">BattleShip</h1>
+      <p class="h4">Welcome to classic sea battle</p>
+      <p class="h4">Set up your board and start playing</p>
+    </div>
+    <div ng-controller="selectdinamico" class="difficulty">
+      <p>Difficulty</p>
+      <select name="miSelect" [(ngModel)]="option">
+        <option [value]="item" *ngFor="let item of camposelect">
+          {{ item }}
+        </option>
+      </select>
+    </div>
+    <div class="btnDiv">
+      <button routerLink="/game" type="button" class="btn" (click)="initGame()">
+        START
+      </button>
+    </div>
+    <div class="links">
+      <a routerLink="/rules">Rules</a>
+      <a routerLink="/finished">Finished games</a>
+    </div>
+  </div>
+</div>
