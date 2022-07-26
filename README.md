@@ -27,3 +27,6 @@ At any moment of the game you can pause and you will see a menu with two buttons
 
 If you win or lose you will see a screen according to each case.
 
+You can test the game at the following link:
+https://btship-angular.netlify.app/
+
